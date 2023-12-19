@@ -1,0 +1,4 @@
+FROM apache/airflow:2.2.3
+ADD requirements.txt /home/nantenaina/Documents/10Academy2023/Week02/Challenge2/requirements.txt
+RUN pip install --no-cache-dir -U pip setuptools wheel
+RUN pip install --no-cache-dir -r /home/nantenaina/Documents/10Academy2023/Week02/Challenge2/requirements.txt
