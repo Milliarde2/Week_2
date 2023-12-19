@@ -1,0 +1,4 @@
+#ignore the file and folder in listed here
+Data/**
+logs/**
+datatest/**

@@ -1,0 +1,2 @@
+Jupyter URL and token : 
+http://127.0.0.1:8888/lab?token=9093239eb17d3f1de2966337fec4ef4c47a092769da14c6a
