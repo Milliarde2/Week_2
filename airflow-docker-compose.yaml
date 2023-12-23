@@ -16,10 +16,10 @@ x-airflow-common:
     AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
     AIRFLOW__API__AUTH_BACKEND: 'airflow.api.auth.backend.basic_auth'
     # Scan for DAGs every 60 seconds
-    AIRFLOW__SCHEDULER__DAG_DIR_LIST_INTERVAL: '60'
+    AIRFLOW__SCHEDULER__DAG_DIR_LIST_INTERVAL: '1800'
     AIRFLOW__WEBSERVER__SECRET_KEY: '3d6f45a5fc12445dbac2f59c3b6c7cb1'
     # Prevent airflow from reloading the dags all the time and set:
-    AIRFLOW__SCHEDULER__MIN_FILE_PROCESS_INTERVAL: '60'
+    AIRFLOW__SCHEDULER__MIN_FILE_PROCESS_INTERVAL: '1800'
     # 2 * NUM_CPU_CORES + 1
     AIRFLOW__WEBSERVER__WORKERS: '2'
     # Kill workers if they don't start within 5min instead of 2min
@@ -54,7 +54,7 @@ services:
     healthcheck:
       test: [ "CMD", "pg_isready", "-U", "airflow" ]
       interval: 5s
-      retries: 5
+      retries: 1
     restart: always
     networks:
       - etl_network
@@ -67,7 +67,7 @@ services:
       test: [ "CMD", "redis-cli", "ping" ]
       interval: 5s
       timeout: 30s
-      retries: 50
+      retries: 1
     restart: always
     mem_limit: 4000m
     networks:
@@ -88,7 +88,7 @@ services:
         ]
       interval: 10s
       timeout: 10s
-      retries: 5
+      retries: 1
     restart: always
 
   airflow-scheduler:
@@ -103,7 +103,7 @@ services:
         ]
       interval: 10s
       timeout: 10s
-      retries: 5
+      retries: 1
     restart: always
 
   airflow-worker:
@@ -116,7 +116,7 @@ services:
           "celery@$${HOSTNAME}"'
       interval: 10s
       timeout: 10s
-      retries: 5
+      retries: 1
     restart: always
 
   airflow-init:
@@ -138,7 +138,7 @@ services:
       test: [ "CMD", "curl", "--fail", "http://localhost:5555/" ]
       interval: 10s
       timeout: 10s
-      retries: 5
+      retries: 1
     restart: always
     mem_limit: 4000m
 
